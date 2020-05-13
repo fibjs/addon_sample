@@ -1,6 +1,6 @@
 ## Fibjs Addon Compilation Sample (WIP)
 
-This repo shows how to compile fibjs's addon with fibjs_vender.
+This repo shows how to compile fibjs's addon with fibjs_[vender].
 
 ### Pre-requisites
 
