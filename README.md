@@ -14,17 +14,17 @@ On Unix, just run shell below:
 $ curl -s http://fibjs.org/download/installer.sh | sh
 ```
 
-On Windows, you can download fibjs's installtion and run it [here](http://fibjs.org/dist/), or download one portal package, and put it in your PATH environtment.
+On Windows, you can download fibjs's installtion [here](http://fibjs.org/dist/) and run it, or download one portal package, and put its file position in your environment variable PATH.
 
 **cmake**
 
-we use cmake to build addon target on multiple platforms(Windows, Darwin, Linux) & archs(x86, x64, arm, arm64, etc)
+we use cmake to build addon target for multiple platforms(Windows, Darwin, Linux) & architectures(x86, x64, arm, arm64, etc)
 
 **vender**
 
-fibjs's [vender] source, we need C/C++ headers and cmake fragments in it.
+we need C/C++ headers and cmake fragments in fibjs's [vender] source.
 
-**NOTE** you don't need download or clone [vender] repo manually, we prepare some simple scripts for you to download vender source, just see next capter.
+**NOTE** you don't need to download or clone [vender] repo manually, we prepare some simple scripts for you to download vender source, just see next chapter.
 
 ### Getting Startted
 
