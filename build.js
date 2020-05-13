@@ -37,16 +37,19 @@ const zipFile = zip.open(zipFileName)
 const topDir = zipFile.namelist()[0].split(path.sep)[0]
 // process.exit()
 
-process.run('unzip', [ zipFileName ])
-if (fs.exists(VENDER_DIR))
-    try {
-        fs.unlink(VENDER_DIR)
-    } catch (error) {}
-process.run('mv', [ topDir, 'vender' ])
+if (process.platform === 'win32') {
+    soft_extract()
+} else {
+    process.run('unzip', [ zipFileName ])
+    if (fs.exists(VENDER_DIR))
+        try {
+            fs.unlink(VENDER_DIR)
+        } catch (error) {}
+    process.run('mv', [ topDir, 'vender' ])
+}
 
 process.exit();
 
-// const extract_worker = new Worker(path.join(__dirname, 'extract_worker.js'))
 function soft_extract () {
     const existed_dir = {};
     zipFile.namelist().forEach((zpath) => {
