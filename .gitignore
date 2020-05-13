@@ -1,0 +1,7 @@
+!hello/**/*
+# internal addons
+!gd
+
+/vender
+/*.zip
+/fibjs_vender*
