@@ -1,0 +1,66 @@
+dist: trusty
+language: cpp
+if: (branch =~ ^(dev|beta|master|test_ci)$) || (tag =~ ^v?[0-9]+\.[0-9]+\.[0-9]+$)
+services:
+  - docker
+matrix:
+  include:
+    - os: osx
+      osx_image: xcode9
+      env:
+        - ARCH=amd64
+    - os: osx
+      osx_image: xcode9
+      env:
+        - ARCH=i386
+    - os: linux
+      env:
+        - ARCH=amd64
+    - os: linux
+      env:
+        - ARCH=i386
+    - os: linux
+      env:
+        - ARCH=arm
+    - os: linux
+      env:
+        - ARCH=arm64
+    - os: linux
+      env:
+        - ARCH=mips
+    - os: linux
+      env:
+        - ARCH=mips64
+cache: ccache
+addons:
+  apt:
+    packages:
+      - cmake
+      - clang
+      - ccache
+      - unzip
+  homebrew:
+    packages:
+      - cmake
+      - xz
+      - unzip
+before_install:
+  - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then
+    rvm install ruby-2.4.0;
+    rvm --default use 2.4.0;
+    ruby -v;
+    brew update;
+    fi
+install:
+  - curl -s http://fibjs.org/download/installer.sh | sh
+  - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then
+    brew install ccache;
+    export PATH="/usr/local/opt/ccache/libexec:$PATH";
+    brew install xz;
+    fi
+script:
+  - echo "${ARCH}"
+  - fibjs ./build.js
+  - mkdir -p hello/build && cd hello/build;
+    rm -rf ./* && cmake ../;
+    make;
